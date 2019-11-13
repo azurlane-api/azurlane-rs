@@ -3,7 +3,7 @@ Wrapper for the unofficial azur lane json api in Rust
 
 
 ## Example
-```rs
+```rust
 let _ = match client.get_ships() {
     Ok(response) => {
         for i in 0..response.ships.len() {
