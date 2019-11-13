@@ -4,16 +4,24 @@ Wrapper for the unofficial azur lane json api in Rust
 
 ## Example
 ```rust
-let _ = match client.get_ships() {
-    Ok(response) => {
-        for i in 0..response.ships.len() {
-            println!("[{}]: ({})", response.ships[i].id, response.ships[i].name)
+use azurlane_rs::{AzurLaneRequester, Order};
+use reqwest::Client;
+
+fn main() {
+    let client = Client::new();
+    
+    let _ = match client.get_ships(Order::RARITY, "Super Rare") {
+        Ok(response) => {
+            for i in 0..response.ships.len() {
+                println!("[{}]: ({})", response.ships[i].id, response.ships[i].name)
+            }
         }
-    }
-    Err(why) => {
-        panic!("{}", why)
-    }
-};
+        Err(why) => {
+            panic!("{}", why)
+        }
+    };
+    
+}
 ```
 
 ## Support
