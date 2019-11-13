@@ -5,21 +5,37 @@ use serde_json;
 use crate::{API_URL, Error, Result};
 use crate::model::{ShipResponse, ShipsResponse};
 
-pub trait AzurLaneRequester {
-    fn get_ship_by_name(&self, name: String) -> Result<ShipResponse>;
+pub enum Order {
+    RARITY,
+    TYPE,
+    AFFILIATION
+}
 
-    fn get_ships(&self) -> Result<ShipsResponse>;
+impl Order {
+    pub fn string(&self) -> &str {
+        match self {
+            Self::RARITY => "rarity",
+            Self::TYPE => "type",
+            Self::AFFILIATION => "affiliation"
+        }
+    }
+}
+
+pub trait AzurLaneRequester {
+    fn get_ship_by_name(&self, name: &str) -> Result<ShipResponse>;
+
+    fn get_ships(&self, order: Order, value: &str) -> Result<ShipsResponse>;
 }
 
 impl AzurLaneRequester for Client {
-    fn get_ship_by_name(&self, name: String) -> Result<ShipResponse> {
+    fn get_ship_by_name(&self, name: &str) -> Result<ShipResponse> {
         let uri = Url::parse(&format!("{}/ship?name={}", API_URL, name))?;
         
         handle_request::<ShipResponse>(self.get(uri))
     }
 
-    fn get_ships(&self) -> Result<ShipsResponse> {
-        let uri = Url::parse(&format!("{}/ships?orderBy=rarity&rarity=Super%20Rare", API_URL))?;
+    fn get_ships(&self, order: Order, value: &str) -> Result<ShipsResponse> {
+        let uri = Url::parse(&format!("{}/ships?orderBy={}&{}={}", API_URL, order.string(), order.string(), value))?;
         
         handle_request::<ShipsResponse>(self.get(uri))
     }

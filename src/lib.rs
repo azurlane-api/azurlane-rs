@@ -11,6 +11,6 @@ mod error;
 
 pub use error::{Error, Result};
 
-pub use requester::AzurLaneRequester;
+pub use requester::{AzurLaneRequester, Order};
 
 pub const API_URL: &'static str = "https://azurlane-api.appspot.com/v1";
