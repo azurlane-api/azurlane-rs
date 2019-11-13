@@ -1,15 +1,15 @@
 [package]
-name = "azurlane-rs"
+name = "azurlane"
 description = "Wrapper for the unofficial azur lane json api in Rust"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["KurozeroPB <root@kurozeropb.info>"]
 edition = "2018"
 categories = ["api-bindings", "web-programming"]
-documentation = "https://docs.rs/azurlane-rs"
-homepage = "https://github.com/KurozeroPB/azurlane-rs"
+documentation = "https://docs.rs/azurlane"
+homepage = "https://github.com/azurlane-api/azurlane-rs"
 keywords = ["api", "http", "azurlane"]
-license = ""
-repository = "https://github.com/KurozeroPB/azurlane-rs.git"
+license = "GPL-3.0"
+repository = "https://github.com/azurlane-api/azurlane-rs.git"
 
 [dependencies]
 reqwest = "^0.9"
