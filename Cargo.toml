@@ -1,0 +1,18 @@
+[package]
+name = "azurlane-rs"
+description = "Wrapper for the unofficial azur lane json api in Rust"
+version = "0.1.0"
+authors = ["KurozeroPB <root@kurozeropb.info>"]
+edition = "2018"
+categories = ["api-bindings", "web-programming"]
+documentation = "https://docs.rs/azurlane-rs"
+homepage = "https://github.com/KurozeroPB/azurlane-rs"
+keywords = ["api", "http", "azurlane"]
+license = ""
+repository = "https://github.com/KurozeroPB/azurlane-rs.git"
+
+[dependencies]
+reqwest = "^0.9"
+serde = "^1.0"
+serde_derive = "^1.0"
+serde_json = "^1.0"
