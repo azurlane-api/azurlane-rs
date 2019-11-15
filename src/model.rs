@@ -30,10 +30,8 @@ pub struct Stat {
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Stats {
-    #[serde(rename = "100")]
-    pub hundred: Option<Vec<Stat>>,
-    #[serde(rename = "120")]
-    pub hundred_twenty: Option<Vec<Stat>>,
+    pub level100: Option<Vec<Stat>>,
+    pub level120: Option<Vec<Stat>>,
     pub base: Option<Vec<Stat>>,
     pub retrofit100: Option<Vec<Stat>>,
     pub retrofit120: Option<Vec<Stat>>,

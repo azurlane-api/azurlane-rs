@@ -14,7 +14,7 @@ use crate::{API_URL, Error, Result};
 use crate::model::{ShipResponse, ShipsResponse, ConstructionResponse};
 
 /// Used to specify what category you want to get the ships from when using `get_ships()`
-pub enum Order {
+pub enum Category {
     /// Rarity can be one of but isn't limited to `Super Rare`, `Normal`, `Rare`
     RARITY,
     /// Type can be one of but isn't limited to `Destroyer`, `Aircraft Carrier`, `Submarine`
@@ -23,7 +23,7 @@ pub enum Order {
     AFFILIATION
 }
 
-impl Order {
+impl Category {
     /// String representation of the enum value
     pub fn string(&self) -> &str {
         match self {
@@ -52,7 +52,7 @@ pub trait AzurLaneRequester {
     fn get_ship_by_id(&self, id: &str) -> Result<ShipResponse>;
 
     /// Get a list of ships from the order specified
-    fn get_ships(&self, order: Order, value: &str) -> Result<ShipsResponse>;
+    fn get_ships(&self, category: Category, value: &str) -> Result<ShipsResponse>;
 
     /// Get a list of ships matching the construction time
     fn get_build_info(&self, time: &str) -> Result<ConstructionResponse>;
@@ -71,8 +71,8 @@ impl AzurLaneRequester for Client {
         handle_request::<ShipResponse>(self.get(uri))
     }
 
-    fn get_ships(&self, order: Order, value: &str) -> Result<ShipsResponse> {
-        let uri = Url::parse(&format!("{}/ships?orderBy={}&{}={}", API_URL, order.string(), order.string(), value))?;
+    fn get_ships(&self, category: Category, value: &str) -> Result<ShipsResponse> {
+        let uri = Url::parse(&format!("{}/ships?category={}&{}={}", API_URL, category.string(), category.string(), value))?;
         
         handle_request::<ShipsResponse>(self.get(uri))
     }

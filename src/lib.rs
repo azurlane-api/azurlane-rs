@@ -8,19 +8,19 @@
 //! 
 //! ```toml
 //! [dependencies]
-//! azurlane = "1.0"
+//! azurlane = "1.1"
 //! ```
 //! 
 //! ### Example
 //! 
 //! ```rust,no_run
-//! use azurlane::{AzurLaneRequester, Order};
+//! use azurlane::{AzurLaneRequester, Category};
 //! use reqwest::Client;
 //! 
 //! fn main() {
 //!     let client = Client::new();
 //!     
-//!     let _ = match client.get_ships(Order::RARITY, "Super Rare") {
+//!     let _ = match client.get_ships(Category::RARITY, "Super Rare") {
 //!         Ok(response) => {
 //!             for i in 0..response.ships.len() {
 //!                 println!("[{}]: ({})", response.ships[i].id, response.ships[i].name)
@@ -53,7 +53,7 @@ mod error;
 
 pub use error::{Error, Result};
 
-pub use requester::{AzurLaneRequester, Order};
+pub use requester::{AzurLaneRequester, Category};
 
 /// Base API Url
-pub const API_URL: &'static str = "https://azurlane-api.appspot.com/v1";
+pub const API_URL: &'static str = "https://azurlane-api.herokuapp.com/v2";
